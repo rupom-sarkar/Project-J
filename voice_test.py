@@ -1,8 +1,13 @@
-from voice.listener import Listener
+﻿from voice.listener import Listener
 
 
-listener = Listener()
+def main():
+    listener = Listener()
 
-text = listener.listen()
+    text = listener.listen()
 
-print(f"Recognized: {text}")
+    print(f"Recognized: {text}")
+
+
+if __name__ == "__main__":
+    main()

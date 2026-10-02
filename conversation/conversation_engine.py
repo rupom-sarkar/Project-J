@@ -14,7 +14,20 @@ class ConversationEngine:
 
         # Normalize command
         command = command.lower().strip()
-        command = re.sub(r"[^\w\s]", "", command)
+
+        # Preserve meaningful apostrophes for conversation history.
+        conversation_statement = re.sub(
+            r"[^\w\s']",
+            "",
+            command
+        )
+
+        # Remove punctuation for deterministic command matching.
+        command = re.sub(
+            r"[^\w\s]",
+            "",
+            command
+        )
 
         def update_conversation(topic=None):
 
@@ -22,7 +35,7 @@ class ConversationEngine:
                 context.set_conversation_topic(topic)
 
             context.set_last_conversational_statement(
-                command
+                conversation_statement
             )
 
             context.increment_conversation_turn()
@@ -338,3 +351,5 @@ class ConversationEngine:
         # No deterministic response
         # ------------------------------------------
         return None
+
+

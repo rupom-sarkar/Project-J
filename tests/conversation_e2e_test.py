@@ -3,7 +3,7 @@ from core.jarvis import Jarvis
 
 def test_multi_turn_conversation():
 
-    jarvis = Jarvis()
+    jarvis = Jarvis(enable_ui=False)
 
     # Turn 1
     response = jarvis.respond(

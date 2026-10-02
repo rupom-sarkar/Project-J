@@ -25,7 +25,7 @@ from core.ui_bridge import UIBridge
 
 class Jarvis:
 
-    def __init__(self):
+    def __init__(self, enable_ui=True):
 
         self.name = "JARVIS"
 
@@ -85,9 +85,10 @@ class Jarvis:
         # FRONTEND UI BRIDGE
         # ==========================================
 
-        self.ui_bridge = UIBridge()
+        self.ui_bridge = UIBridge() if enable_ui else None
 
-        self.ui_bridge.start()
+        if self.ui_bridge:
+            self.ui_bridge.start()
 
     # ==================================================
     # MAIN JARVIS RESPONSE
@@ -110,7 +111,8 @@ class Jarvis:
             "wake up jarvis"
         ]:
 
-            self.ui_bridge.turn_on()
+            if self.ui_bridge:
+                self.ui_bridge.turn_on()
 
             return (
                 "JARVIS systems activated, Sir."
@@ -125,7 +127,8 @@ class Jarvis:
             "sleep jarvis"
         ]:
 
-            self.ui_bridge.turn_off()
+            if self.ui_bridge:
+                self.ui_bridge.turn_off()
 
             return (
                 "JARVIS systems deactivated, Sir."
